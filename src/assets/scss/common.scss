@@ -1,0 +1,63 @@
+
+@import './van.scss';
+
+.overflow_ellipsis {
+    // 限制两行文本，超出显示省略号
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+@mixin multi-ellipsis($lines) {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: $lines;
+
+    /* autoprefixer: ignore next */
+    -webkit-box-orient: vertical;
+}
+
+@mixin ellipsis() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@mixin clearfix() {
+    &::after {
+        display: table;
+        clear: both;
+        content: '';
+    }
+}
+
+.ellipsis {
+    @include ellipsis();
+}
+
+.multi-ellipsis--l2 {
+    @include multi-ellipsis(2);
+}
+
+.multi-ellipsis--l3 {
+    @include multi-ellipsis(3);
+}
+
+.clearfix {
+    @include clearfix();
+}
+
+// 遮罩层
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+  
